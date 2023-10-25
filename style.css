@@ -1,0 +1,40 @@
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(43, 175, 153);
+    width: 100%;
+    height: 100px;
+    align-items: center;
+    font-size: 40px;
+    color: white;
+    font-weight: 700;
+
+}
+
+.title {
+    margin-left: 20px;
+}
+
+.logIn {
+    color: white;
+    font-size: 20px;
+    margin-right: 20px;
+    border: none;
+    border-radius: 12px;
+    padding: 10px;
+    background-color: rgb(120, 185, 174);
+    font-weight: bold;
+}
+
+.library {
+    display: flex;
+}
+
+.library > .book {
+    border: 1px dotted;
+}
