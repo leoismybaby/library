@@ -5,16 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Library</title>
     <link rel="stylesheet" type="text/css" href="style.css"/>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </head>
 
 <body>
     <div class="header">
-        <div>My Library</div>
+        <div class="title">My Library</div>
         <button class="logIn">Log In</button>
     </div>
     <div class="library">
-        <div class="book">Dummy Book</div>
+        <dialog>
+            <form action="example.path.com" method="post">
+                <div>
+                    <label for="newTitle">Book Title:</label>
+                    <input type="text" id="newTitle" placeholder="The Richest Man in Babylon" name="newTitle">
+                </div>
+
+                <div>
+                    <label for="newAuthor">Author:</label>
+                    <input type="text" id="newAuthor" placeholder="George S. Clason" name="newAuthor">
+                </div>
+
+                <div>
+                    <label for="newPages">Pages:</label>
+                    <input type="text" id="newPages" placeholder="1000" name="newPages">
+                </div>
+
+                <div>
+                    <h5>Read Status:</h5>
+                    <div>
+                        <input type="radio" id="read" name="read" value="read">
+                        <label for="read">Read</label>
+                    </div>
+
+                    <div>
+                        <input type="radio" id="notRead" name="notRead" value="notRead">
+                        <label for="notRead">Not read</label>
+                    </div>
+                </div>
+            </form>
+            <button autofocus>Close</button>
+        </dialog>
+        <button class="addNew">+ Add new book</button>
     </div>
 </body>
 </html>

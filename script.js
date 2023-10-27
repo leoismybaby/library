@@ -15,19 +15,26 @@ function addBookToLibrary(Book) {
 
 function displayBooks() {
     let library = document.querySelector(".library")
-    myLibrary.forEach((book) => {        
-        // create new div DOM element
+    myLibrary.forEach((book) => {       
         let card = document.createElement('div')
-        
-        // fill new element with book title 
-        card.textContent = book.title
-        console.log(card.textContent)
-        console.log(card)
-        // fill new element with read/not read button
-        // append book to library library.appendChild(variable of current book)
+        card.textContent = book.title 
         library.appendChild(card)
 })
 }
+
+const dialog = document.querySelector("dialog");
+const showButton = document.querySelector("dialog + button");
+const closeButton = document.querySelector("dialog button");
+
+// "Show the dialog" button opens the dialog modally
+showButton.addEventListener("click", () => {
+  dialog.showModal();
+});
+
+// "Close" button closes the dialog
+closeButton.addEventListener("click", () => {
+  dialog.close();
+});
 
 // dummy books
 const GameofThrones = new Book("Game of Thrones", "George R. R. Martin", "468", "not read")
