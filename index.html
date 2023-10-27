@@ -15,7 +15,7 @@
     </div>
     <div class="library">
         <dialog>
-            <form action="example.path.com" method="post">
+            <form action="https://httpbin.org/post" method="post">
                 <div>
                     <label for="newTitle">Book Title:</label>
                     <input type="text" id="newTitle" placeholder="The Richest Man in Babylon" name="newTitle">
@@ -34,17 +34,17 @@
                 <div>
                     <h5>Read Status:</h5>
                     <div>
-                        <input type="radio" id="read" name="read" value="read">
+                        <input type="radio" id="read" name="readStatus" value="read">
                         <label for="read">Read</label>
                     </div>
 
                     <div>
-                        <input type="radio" id="notRead" name="notRead" value="notRead">
+                        <input type="radio" id="notRead" name="readStatus" value="not Read" checked>
                         <label for="notRead">Not read</label>
                     </div>
                 </div>
             </form>
-            <button autofocus>Close</button>
+            <button class="submit" type="submit">Submit</button>
         </dialog>
         <button class="addNew">+ Add new book</button>
     </div>
