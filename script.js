@@ -3,6 +3,7 @@ const dialog = document.querySelector("dialog");
 const showButton = document.querySelector("dialog + button");
 const submitButton = document.querySelector("dialog button");
 const library = document.querySelector(".library")
+let bookCount = 0
 
 const newTitle = document.getElementById('newTitle')
 const newAuthor = document.getElementById('newAuthor')
@@ -18,13 +19,29 @@ showButton.addEventListener("click", () => {
   
 
  // "Submit" button closes the dialog
- submitButton.addEventListener("click", (e) => {
+submitButton.addEventListener("click", (e) => {
     e.preventDefault();
-    let newBook = new Book(newTitle.value, newPages.value, newAuthor.value, readStatus.value)
+    let newBook = new Book(newTitle.value, newAuthor.value, newPages.value, readStatus.value)
     addBookToLibrary(newBook)
+    console.log(newBook)
     dialog.close()
   });
 
+  // Remove book when user clicks X
+document.addEventListener("click", (e) => {
+    let arrayNum = e.target.parentNode
+
+    // if has data attribute bookNumber
+    if (arrayNum.getAttribute('bookNumber')) {
+        // remove from array
+        myLibrary.splice(arrayNum.getAttribute('bookNumber'), 1)
+        console.log(myLibrary)
+        // remove from DOM tree
+        e.target.parentNode.parentNode.removeChild(e.target.parentNode)
+        
+    }
+    
+})
 
 function Book(title, author, pages, read) {
     this.title = title
@@ -34,33 +51,30 @@ function Book(title, author, pages, read) {
 }
 
 function addBookToLibrary(Book) {
-    // take user's input and store new book in array
+    // push book into myLibrary array
     myLibrary.push(Book)
-    // clear current display
-    // display new array
+    // create new card for current book
     let card = document.createElement('div')
-        card.classList.add('book')
-        card.textContent = Book.title 
+    // keep track of number of books
+        card.setAttribute("bookNumber", bookCount)
+        bookCount = bookCount + 1
+        card.textContent = Book.title
         library.appendChild(card)
+
+    let remove = document.createElement('button')
+        remove.classList.add('remove')
+        remove.textContent = "X"
+        card.appendChild(remove)     
 }
 
-// function displayBooks() {
-//     myLibrary.forEach((book) => {       
-//         let card = document.createElement('div')
-//         card.classList.add('book')
-//         card.textContent = book.title 
-//         library.appendChild(card)
-// })
-// }
+
 
 
 // dummy books
-const GameofThrones = new Book("Game of Thrones", "George R. R. Martin", "468", "not read")
-const LordofTheRings = new Book("Lord of The Rings", "John Ronald Reuel Tolkien", "602", "read")
-const PrideandPrejudice = new Book("Pride and Prejudice", "Jane Austin", "400", "not read")
+// const GameofThrones = new Book("Game of Thrones", "George R. R. Martin", "468", "not read")
+// const LordofTheRings = new Book("Lord of The Rings", "John Ronald Reuel Tolkien", "602", "read")
+// const PrideandPrejudice = new Book("Pride and Prejudice", "Jane Austin", "400", "not read")
 
-addBookToLibrary(GameofThrones)
-addBookToLibrary(LordofTheRings)
-addBookToLibrary(PrideandPrejudice)
-
-// displayBooks()
+// addBookToLibrary(GameofThrones)
+// addBookToLibrary(LordofTheRings)
+// addBookToLibrary(PrideandPrejudice)
