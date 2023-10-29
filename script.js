@@ -8,7 +8,7 @@ let bookCount = 0
 const newTitle = document.getElementById('newTitle')
 const newAuthor = document.getElementById('newAuthor')
 const newPages = document.getElementById('newPages')
-const readStatus = document.querySelector('input[type="radio"]:checked') 
+
 
 
 
@@ -21,9 +21,9 @@ showButton.addEventListener("click", () => {
  // "Submit" button closes the dialog
 submitButton.addEventListener("click", (e) => {
     e.preventDefault();
-    let newBook = new Book(newTitle.value, newAuthor.value, newPages.value, readStatus.value)
+    let readStatus = document.querySelector('input[name="readStatus"]:checked').value; // VALUE IS ALWAYS not read PLZ FIX
+    let newBook = new Book(newTitle.value, newAuthor.value, newPages.value, readStatus)
     addBookToLibrary(newBook)
-    console.log(newBook)
     dialog.close()
   });
 
@@ -35,12 +35,9 @@ document.addEventListener("click", (e) => {
     if (arrayNum.getAttribute('bookNumber')) {
         // remove from array
         myLibrary.splice(arrayNum.getAttribute('bookNumber'), 1)
-        console.log(myLibrary)
         // remove from DOM tree
-        e.target.parentNode.parentNode.removeChild(e.target.parentNode)
-        
+        e.target.parentNode.parentNode.removeChild(e.target.parentNode) // https://plainjs.com/javascript/manipulation/removing-an-element-33/
     }
-    
 })
 
 function Book(title, author, pages, read) {
@@ -64,7 +61,7 @@ function addBookToLibrary(Book) {
     let remove = document.createElement('button')
         remove.classList.add('remove')
         remove.textContent = "X"
-        card.appendChild(remove)     
+        card.appendChild(remove) 
 }
 
 
