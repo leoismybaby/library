@@ -21,7 +21,7 @@ showButton.addEventListener("click", () => {
  // "Submit" button closes the dialog
 submitButton.addEventListener("click", (e) => {
     e.preventDefault();
-    let readStatus = document.querySelector('input[name="readStatus"]:checked').value; // VALUE IS ALWAYS not read PLZ FIX
+    let readStatus = document.querySelector('input[name="readStatus"]:checked').value; 
     let newBook = new Book(newTitle.value, newAuthor.value, newPages.value, readStatus)
     addBookToLibrary(newBook)
     dialog.close()
@@ -52,11 +52,21 @@ function addBookToLibrary(Book) {
     myLibrary.push(Book)
     // create new card for current book
     let card = document.createElement('div')
-    // keep track of number of books
+    // keep track of number of books and add title to card
         card.setAttribute("bookNumber", bookCount)
         bookCount = bookCount + 1
         card.textContent = Book.title
         library.appendChild(card)
+
+    // show author on card
+    let author = document.createElement('div')
+    author.textContent = Book.author
+    card.appendChild(author)
+
+    // show read status on card
+    let readStatus = document.createElement('div')
+    readStatus.textContent = document.querySelector('input[name="readStatus"]:checked').value
+    card.appendChild(readStatus)
 
     let remove = document.createElement('button')
         remove.classList.add('remove')
