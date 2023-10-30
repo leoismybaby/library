@@ -25,12 +25,17 @@ submitButton.addEventListener("click", (e) => {
     let newBook = new Book(newTitle.value, newAuthor.value, newPages.value, readStatus)
     addBookToLibrary(newBook)
     dialog.close()
+    
+    // update remove buttons NodeList
+    
   });
 
   // Remove book when user clicks X
 document.addEventListener("click", (e) => {
+    // if user clicks on X/remove
+    if (e.target.textContent == "X") {
+    // if e.target = 
     let arrayNum = e.target.parentNode
-
     // if has data attribute bookNumber
     if (arrayNum.getAttribute('bookNumber')) {
         // remove from array
@@ -38,7 +43,7 @@ document.addEventListener("click", (e) => {
         // remove from DOM tree
         e.target.parentNode.parentNode.removeChild(e.target.parentNode) // https://plainjs.com/javascript/manipulation/removing-an-element-33/
     }
-})
+}})
 
 function Book(title, author, pages, read) {
     this.title = title
@@ -46,6 +51,15 @@ function Book(title, author, pages, read) {
     this.pages = pages 
     this.read = read
 }
+
+// Book.prototype.changeReadStatus = function () {
+//     //if "not read" is clicked
+//     if (document.addEventListener('click', (e))) {
+//         console.log(e)
+//     }
+//     // change not read to read in this.read
+//     // update not read to read on card display
+// }
 
 function addBookToLibrary(Book) {
     // push book into myLibrary array
