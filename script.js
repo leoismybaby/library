@@ -3,7 +3,6 @@ const dialog = document.querySelector("dialog");
 const showButton = document.querySelector("dialog + button");
 const submitButton = document.querySelector("dialog button");
 const library = document.querySelector(".library")
-let bookCount = 0
 
 const newTitle = document.getElementById('newTitle')
 const newAuthor = document.getElementById('newAuthor')
@@ -16,7 +15,6 @@ const newPages = document.getElementById('newPages')
 showButton.addEventListener("click", () => {
     dialog.showModal();
   });
-  
 
  // "Submit" button closes the dialog
 submitButton.addEventListener("click", (e) => {
@@ -26,24 +24,32 @@ submitButton.addEventListener("click", (e) => {
     addBookToLibrary(newBook)
     dialog.close()
     
-    // update remove buttons NodeList
-    
   });
 
-  // Remove book when user clicks X
+//   // Remove book when user clicks X
 document.addEventListener("click", (e) => {
     // if user clicks on X/remove
     if (e.target.textContent == "X") {
-    // if e.target = 
-    let arrayNum = e.target.parentNode
-    // if has data attribute bookNumber
-    if (arrayNum.getAttribute('bookNumber')) {
-        // remove from array
-        myLibrary.splice(arrayNum.getAttribute('bookNumber'), 1)
-        // remove from DOM tree
-        e.target.parentNode.parentNode.removeChild(e.target.parentNode) // https://plainjs.com/javascript/manipulation/removing-an-element-33/
-    }
+    // remove from array (array book title needs to match DOM book title)
+    let removeIndex = myLibrary.findIndex(item => item.title == e.target.parentNode.firstChild.textContent)
+    myLibrary.splice(removeIndex, 1)
+    // remove from DOM tree: go to parent node and remove child from there
+    e.target.parentNode.parentNode.removeChild(e.target.parentNode) // https://plainjs.com/javascript/manipulation/removing-an-element-33/
+    console.log(myLibrary)
 }})
+
+// // change read status when user clicks "not read"
+// document.addEventListener('click', (e) => {
+//     // if "not read" is clicked
+//     if (e.target.textContent == "not Read") {
+//         e.target.textContent = "read"
+//         changeReadStatus()
+//     }
+// })
+
+// Book.prototype.changeReadStatus = function () {
+//     this.read = "read"
+//     }
 
 function Book(title, author, pages, read) {
     this.title = title
@@ -52,25 +58,20 @@ function Book(title, author, pages, read) {
     this.read = read
 }
 
-// Book.prototype.changeReadStatus = function () {
-//     //if "not read" is clicked
-//     if (document.addEventListener('click', (e))) {
-//         console.log(e)
-//     }
-//     // change not read to read in this.read
-//     // update not read to read on card display
-// }
 
 function addBookToLibrary(Book) {
     // push book into myLibrary array
+    
     myLibrary.push(Book)
-    // create new card for current book
     let card = document.createElement('div')
-    // keep track of number of books and add title to card
-        card.setAttribute("bookNumber", bookCount)
-        bookCount = bookCount + 1
-        card.textContent = Book.title
-        library.appendChild(card)
+    library.appendChild(card)
+
+    let title = document.createElement('div')
+    title.textContent = Book.title
+    title.classList.add('bookTitle')
+    card.appendChild(title)
+
+     
 
     // show author on card
     let author = document.createElement('div')
@@ -86,16 +87,7 @@ function addBookToLibrary(Book) {
         remove.classList.add('remove')
         remove.textContent = "X"
         card.appendChild(remove) 
+
+    console.log(myLibrary)
 }
 
-
-
-
-// dummy books
-// const GameofThrones = new Book("Game of Thrones", "George R. R. Martin", "468", "not read")
-// const LordofTheRings = new Book("Lord of The Rings", "John Ronald Reuel Tolkien", "602", "read")
-// const PrideandPrejudice = new Book("Pride and Prejudice", "Jane Austin", "400", "not read")
-
-// addBookToLibrary(GameofThrones)
-// addBookToLibrary(LordofTheRings)
-// addBookToLibrary(PrideandPrejudice)
