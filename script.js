@@ -31,25 +31,29 @@ document.addEventListener("click", (e) => {
     // if user clicks on X/remove
     if (e.target.textContent == "X") {
     // remove from array (array book title needs to match DOM book title)
-    let removeIndex = myLibrary.findIndex(item => item.title == e.target.parentNode.firstChild.textContent)
-    myLibrary.splice(removeIndex, 1)
+    let index = myLibrary.findIndex(item => item.title == e.target.parentNode.firstChild.textContent)
+    myLibrary.splice(index, 1)
     // remove from DOM tree: go to parent node and remove child from there
     e.target.parentNode.parentNode.removeChild(e.target.parentNode) // https://plainjs.com/javascript/manipulation/removing-an-element-33/
     console.log(myLibrary)
 }})
 
-// // change read status when user clicks "not read"
-// document.addEventListener('click', (e) => {
-//     // if "not read" is clicked
-//     if (e.target.textContent == "not Read") {
-//         e.target.textContent = "read"
-//         changeReadStatus()
-//     }
-// })
+// change read status when user clicks "not read"
+document.addEventListener('click', (e) => {
+    // if "not read" is clicked
+    if (e.target.textContent == "not Read") {
+        e.target.textContent = "read"
+        // locate book in array and change read status
+        let bookObject = myLibrary.find(book => book.title == e.target.parentNode.firstChild.textContent)
+        console.log(bookObject)
+        bookObject.changeReadStatus()
+    }
+})
 
-// Book.prototype.changeReadStatus = function () {
-//     this.read = "read"
-//     }
+Book.prototype.changeReadStatus = function () {
+    this.read = "read"
+    
+    }
 
 function Book(title, author, pages, read) {
     this.title = title
