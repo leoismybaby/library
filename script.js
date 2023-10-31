@@ -42,17 +42,19 @@ document.addEventListener("click", (e) => {
 document.addEventListener('click', (e) => {
     // if "not read" is clicked
     if (e.target.textContent == "not Read") {
-        e.target.textContent = "read"
         // locate book in array and change read status
         let bookObject = myLibrary.find(book => book.title == e.target.parentNode.firstChild.textContent)
         console.log(bookObject)
-        bookObject.changeReadStatus()
+        bookObject.changeReadStatus() 
+
+        // change read status in DOM
+        e.target.textContent = "read"
     }
 })
 
 Book.prototype.changeReadStatus = function () {
     this.read = "read"
-    
+
     }
 
 function Book(title, author, pages, read) {
@@ -68,6 +70,7 @@ function addBookToLibrary(Book) {
     
     myLibrary.push(Book)
     let card = document.createElement('div')
+    card.classList.add('card')
     library.appendChild(card)
 
     let title = document.createElement('div')
@@ -83,7 +86,8 @@ function addBookToLibrary(Book) {
     card.appendChild(author)
 
     // show read status on card
-    let readStatus = document.createElement('div')
+    let readStatus = document.createElement('button')
+    readStatus.classList.add('readDisplay')
     readStatus.textContent = document.querySelector('input[name="readStatus"]:checked').value
     card.appendChild(readStatus)
 

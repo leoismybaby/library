@@ -38,7 +38,7 @@ body {
     flex-wrap: wrap;
 }
 
-.library > div, .addNew {
+.library > .card, .addNew {
     border: 1px dotted;
     width: 200px;
     height: 200px;
@@ -50,4 +50,21 @@ body {
 form {
     display: flex;
     flex-direction: column;
+}
+
+.readDisplay:hover {
+    background-color: green;
+}
+
+.readDisplay:focus{
+    color: green;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+}
+
+.remove:hover {
+    background-color: red;
 }
