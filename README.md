@@ -13,5 +13,7 @@ Prevent Default (https://developer.mozilla.org/en-US/docs/Web/API/Event/preventD
 
 Setting and getting attributes (https://plainjs.com/javascript/attributes/setting-getting-and-removing-data-attributes-8/) - I had learned how to set and get attirubtes in a previous lesson. However, this is the first project where I have had to use this selector.
 
+Classes - After completing the "classes" lesson from the Odin Project, I was instructed to implement classes into my code instead of using object constructors. 
+
 **** BUGS TO FIX ****
 1. 
